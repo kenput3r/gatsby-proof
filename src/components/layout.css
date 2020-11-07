@@ -1,7 +1,12 @@
+:root {
+  --s-red: #822808;
+  --s-red-light: #b2370b;
+  --s-yellow: #fab203;
+}
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  font: 112.5%/1.45em georgia, serif, sans-serif;
+  font: 112.5%/1.45em Arial, Helvetica, sans-serif;
   box-sizing: border-box;
   overflow-y: scroll;
 }
@@ -10,7 +15,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: hsla(0, 0%, 0%, 0.8);
-  font-family: georgia, serif;
+  font-family: Arial, sans-serif;
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;
@@ -71,7 +76,8 @@ strong {
 dfn {
   font-style: italic;
 }
-h1 {
+h1,
+.h1 {
   margin-left: 0;
   margin-right: 0;
   margin-top: 0;
@@ -81,8 +87,7 @@ h1 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: NexaRust;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 2.25rem;
@@ -250,7 +255,8 @@ textarea {
 *:after {
   box-sizing: inherit;
 }
-h2 {
+h2,
+.h2 {
   margin-left: 0;
   margin-right: 0;
   margin-top: 0;
@@ -260,14 +266,14 @@ h2 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: NexaRust;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.62671rem;
   line-height: 1.1;
 }
-h3 {
+h3,
+.h3 {
   margin-left: 0;
   margin-right: 0;
   margin-top: 0;
@@ -277,14 +283,14 @@ h3 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: NexaRust;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.38316rem;
   line-height: 1.1;
 }
-h4 {
+h4,
+.h4 {
   margin-left: 0;
   margin-right: 0;
   margin-top: 0;
@@ -294,14 +300,14 @@ h4 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: NexaRust;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1rem;
   line-height: 1.1;
 }
-h5 {
+h5,
+.h5 {
   margin-left: 0;
   margin-right: 0;
   margin-top: 0;
@@ -311,14 +317,14 @@ h5 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: NexaRust;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.85028rem;
   line-height: 1.1;
 }
-h6 {
+h6,
+.h6 {
   margin-left: 0;
   margin-right: 0;
   margin-top: 0;
@@ -328,8 +334,7 @@ h6 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: NexaRust;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.78405rem;
