@@ -2,18 +2,17 @@ import React from "react"
 import PropTypes from "prop-types"
 import "./fonts.css"
 import "./layout.css"
+import Header from "./header"
+import Footer from "./Footer"
+import Drawer from "./Drawer/"
 
 const Layout = ({ children }) => {
   return (
     <>
+      <Header />
+      <Drawer />
       <main>{children}</main>
-      <footer
-        style={{
-          marginTop: `2rem`,
-        }}
-      >
-        © {new Date().getFullYear()}, Built by @kenput3r
-      </footer>
+      <Footer />
     </>
   )
 }

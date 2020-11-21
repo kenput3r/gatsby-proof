@@ -2,6 +2,7 @@
   --s-red: #822808;
   --s-red-light: #b2370b;
   --s-yellow: #fab203;
+  --s-black: #212121;
 }
 html {
   -ms-text-size-adjust: 100%;
@@ -197,6 +198,17 @@ button::-moz-focus-inner {
 [type="submit"]:-moz-focusring,
 button:-moz-focusring {
   outline: 1px dotted ButtonText;
+}
+button:focus,
+input[type="button"]:focus,
+input:focus,
+a:focus,
+select:focus {
+  outline: 3px dashed var(--s-yellow);
+  box-shadow: none !important;
+}
+button:hover {
+  cursor: pointer;
 }
 fieldset {
   border: 1px solid silver;
@@ -599,4 +611,7 @@ pre tt:after {
   html {
     font-size: 100%;
   }
+}
+[data-reach-dialog-overlay] {
+  z-index: 2;
 }

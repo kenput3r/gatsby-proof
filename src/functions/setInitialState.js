@@ -5,6 +5,7 @@ export default function setInitialState(data) {
       reviews_count: 0,
     },
   }
+  const variants = {}
   for (let metafield of data.metafields) {
     const namespace = metafield.namespace
     const key = metafield.key
@@ -14,5 +15,10 @@ export default function setInitialState(data) {
       metafields.yotpo.reviews_average = metafield.value
     }
   }
-  return metafields
+  for (let variant of data.variants) {
+    const sku = variant.sku
+    const quantityAvailable = variant.availableForSale ? 30 : 0
+    variants[sku] = { quantityAvailable }
+  }
+  return { metafields, variants }
 }
