@@ -33,7 +33,7 @@ const Shop = () => {
     <Container>
       <Grid>
         <GridItem flex={1}>
-          <div class="list-title">For Men</div>
+          <div className="list-title">For Men</div>
           <nav aria-label="Shop for men">
             <ul>
               <li>
@@ -55,7 +55,7 @@ const Shop = () => {
           </nav>
         </GridItem>
         <GridItem flex={1}>
-          <div class="list-title">For Women</div>
+          <div className="list-title">For Women</div>
           <nav aria-label="Shop for women">
             <ul>
               <li>
@@ -80,7 +80,7 @@ const Shop = () => {
           </nav>
         </GridItem>
         <GridItem flex={1}>
-          <div class="list-title">For Kids</div>
+          <div className="list-title">For Kids</div>
           <nav aria-label="Shop for kids">
             <ul>
               <li>
@@ -95,7 +95,7 @@ const Shop = () => {
       </Grid>
       <Grid>
         <GridItem flex={1}>
-          <div class="list-title">By Category</div>
+          <div className="list-title">By Category</div>
           <nav aria-label="Shop by category">
             <ul>
               <li>
@@ -123,7 +123,7 @@ const Shop = () => {
           </nav>
         </GridItem>
         <GridItem flex={2}>
-          <div class="list-title">By Brand</div>
+          <div className="list-title">By Brand</div>
           <nav aria-label="Shop by brand">
             <ul>
               <li>

@@ -4,6 +4,7 @@ import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs"
 
 const StarStyles = styled.div`
   color: var(--s-yellow);
+  display: inline-block;
   svg {
     margin: 2px;
   }
@@ -14,7 +15,7 @@ const StarStyles = styled.div`
   }
 `
 
-const starRating = ({ number, reviewsCount }) => {
+const starRating = ({ number }) => {
   const fullStars = []
   const emptyStars = []
   const emptyStarCount = 5 - number >= 1 ? 5 - number : 0
@@ -34,7 +35,6 @@ const starRating = ({ number, reviewsCount }) => {
       {emptyStars.map(star => (
         <BsStar key={"empty" + star} />
       ))}
-      <a href="/">{reviewsCount} Reviews</a>
     </StarStyles>
   )
 }

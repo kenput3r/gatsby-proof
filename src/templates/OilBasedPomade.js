@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import styled from "styled-components"
 import Layout from "../components/layout"
@@ -29,6 +29,16 @@ const Container = styled.div`
 
   @media (max-width: 428px) {
     padding: 10px;
+  }
+
+  .star-container {
+    display: flex;
+    align-items: center;
+    a {
+      color: var(--s-yellow);
+      display: inline-block;
+      padding: 5px;
+    }
   }
 `
 const ProductInfoGrid = styled.div`
@@ -121,6 +131,16 @@ const ProductDetailsGrid = styled.div`
     }
   }
 `
+const defaultReviewsObject = {
+  bottomline: {
+    average_score: 0,
+    star_distribution: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
+    total_review: 0,
+  },
+  pagination: {},
+  reviews: [],
+}
+
 const OilBasedPomade = ({ data }) => {
   const { shopifyProduct: product } = data
   const initialData = setInitialState(product)
@@ -130,6 +150,7 @@ const OilBasedPomade = ({ data }) => {
     product.variants[0].sku
   )
   const [quantityAvailable, setQuantityAvailable] = useState([1])
+  const [reviewsObject, setReviewsObject] = useState(defaultReviewsObject)
   useEffect(() => {
     async function fetchData() {
       const fetchedData = await fetchCurrentProductData(product.handle)
@@ -140,7 +161,7 @@ const OilBasedPomade = ({ data }) => {
       )
     }
     fetchData()
-  }, [product.handle])
+  }, [product.handle, selectedVariant])
 
   const slider_data = {
     slides: [
@@ -180,10 +201,14 @@ const OilBasedPomade = ({ data }) => {
             <div>Hair Products</div>
             <h1>{product.title}</h1>
             <div className="h2">3 OZ (85G)</div>
-            <StarRating
-              number={currentData.metafields.yotpo.reviews_average}
-              reviewsCount={currentData.metafields.yotpo.reviews_count}
-            />
+            <div className="star-container">
+              <StarRating
+                number={currentData.metafields.yotpo.reviews_average}
+              />
+              <a href="/">
+                {currentData.metafields.yotpo.reviews_count} Reviews
+              </a>
+            </div>
             <HTML className="description">{description}</HTML>
             <div className="h2">
               ${product.priceRange.minVariantPrice.amount}{" "}
@@ -249,7 +274,13 @@ const OilBasedPomade = ({ data }) => {
             {isActive === "use" && <UseGrid />}
             {isActive === "gallery" && <GalleryGrid />}
             {isActive === "compare" && <CompareGrid />}
-            {isActive === "reviews" && <ReviewsGrid />}
+            {isActive === "reviews" && (
+              <ReviewsGrid
+                product_id={product.shopifyId}
+                reviewsState={reviewsObject}
+                setReviewsState={setReviewsObject}
+              />
+            )}
           </GridWrapper>
         </ProductDetailsGrid>
       </Container>
@@ -289,6 +320,7 @@ export const query = graphql`
           }
         }
       }
+      shopifyId
       variants {
         availableForSale
         compareAtPriceV2 {

@@ -1,10 +1,23 @@
-import React, { useState, useEffect, useRef, useContext } from "react"
+import React, { useEffect, useRef, useContext } from "react"
 import styled from "styled-components"
-import SiteContext from "./context/"
+import { SiteContext } from "./context"
 
 // styled components
 const Wrapper = styled.div`
   position: relative;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  .title {
+    font-family: NexaRust;
+    line-height: 1.4;
+  }
+
+  a {
+    color: var(--s-red);
+  }
 `
 const FlexGrid = styled.div`
   box-sizing: border-box;
@@ -79,8 +92,15 @@ const Clearer = styled.div`
   clear: both;
 `
 
-const Search = () => {
-  const { searchData, setSearchData } = useContext(SiteContext)
+const SearchResults = () => {
+  const {
+    searchData,
+    setSearchData,
+    searchVisibility,
+    setSearchVisibility,
+    searchFunction,
+  } = useContext(SiteContext)
+
   const defaultData = {
     hits: [],
     hitsPerPage: 0,
@@ -89,19 +109,9 @@ const Search = () => {
     page: 0,
   }
 
-  // state
-  const [query, setQuery] = useState(null)
-  const [visibility, setVisibility] = useState(false)
-
-  // handle input change
-  const handleChange = event => {
-    setQuery(event.target.value)
-    search(event.target.value)
-  }
-
-  // handle pagination
-  const handlePage = (query, page) => {
-    search(query, page)
+  //handle pagination
+  const handlePage = page => {
+    searchFunction(page)
   }
   // pagination vars
   const currentPage = searchData.page
@@ -120,25 +130,6 @@ const Search = () => {
     }
   }
 
-  // algolia search
-  const search = async (query, page) => {
-    const response = await fetch(
-      "https://81AQ1JJ6IF-dsn.algolia.net/1/indexes/shopify_products/query",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json; charset=UTF-8",
-          "X-Algolia-Application-Id": "81AQ1JJ6IF",
-          "X-Algolia-API-Key": "7b66384f9802b4fa12be15e8da9db51f", // search only api key
-        },
-        body: JSON.stringify({ query, hitsPerPage: 8, page: page ? page : 0 }),
-      }
-    )
-    const data = await response.json()
-    setSearchData(data)
-    setVisibility(true)
-  }
-
   // handle click outside
   const wrapperRef = useRef(null)
   useEffect(() => {
@@ -150,15 +141,15 @@ const Search = () => {
 
   const handleClickOutside = event => {
     if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-      setData(defaultData)
-      document.getElementById("search").reset()
-      setVisibility(false)
+      setSearchData(defaultData)
+      document.getElementById("AlgoliaSearchForm").reset()
+      setSearchVisibility(false)
     }
   }
 
-  const renderSearchResults = () => {
-    if (visibility) {
-      return (
+  return (
+    <div ref={wrapperRef}>
+      {searchVisibility && (
         <Wrapper>
           <FlexGrid>
             {searchData.hits.length > 0 &&
@@ -169,9 +160,9 @@ const Search = () => {
                     <img src={hit.image} alt={hit.title} />
                   </ProductImg>
                   <ProductInfo>
-                    <p>
+                    <p className="title">
                       <a href={`https://suavecito.com/products/${hit.handle}`}>
-                        <b>{hit.title}</b>
+                        {hit.title}
                       </a>
                     </p>
                     <p>by {hit.vendor}</p>
@@ -186,11 +177,7 @@ const Search = () => {
               <Pagination>
                 <hr />
                 {!isFirst && (
-                  <a
-                    href="#"
-                    onClick={() => handlePage(query, prevPage)}
-                    rel="prev"
-                  >
+                  <a href="#" onClick={() => handlePage(prevPage)} rel="prev">
                     ← Previous Page
                   </a>
                 )}
@@ -198,18 +185,14 @@ const Search = () => {
                   <a
                     key={`pagination-number${i + 1}`}
                     href="#"
-                    onClick={() => handlePage(query, i + 1)}
+                    onClick={() => handlePage(i + 1)}
                     className={i + 1 === currentPage ? "active" : ""}
                   >
                     {i + 1}
                   </a>
                 ))}
                 {!isLast && (
-                  <a
-                    href="#"
-                    onClick={() => handlePage(query, nextPage)}
-                    rel="next"
-                  >
+                  <a href="#" onClick={() => handlePage(nextPage)} rel="next">
                     Next Page →
                   </a>
                 )}
@@ -217,19 +200,10 @@ const Search = () => {
             )}
           </FlexGrid>
         </Wrapper>
-      )
-    }
-  }
-
-  return (
-    <div ref={wrapperRef}>
-      <form id="search">
-        <input type="text" onChange={handleChange} placeholder="Search..." />
-      </form>
-      {renderSearchResults()}
+      )}
       <Clearer />
     </div>
   )
 }
 
-export default Search
+export default SearchResults

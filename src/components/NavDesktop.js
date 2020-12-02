@@ -8,9 +8,9 @@ import {
   MdShoppingCart as Cart,
   MdPerson as Account,
   MdSms as Chat,
-  MdSearch as Search,
   MdAccessibility as Accessibility,
 } from "react-icons/md"
+import SearchForm from "./SearchForm"
 
 const Container = styled.div`
   position: relative;
@@ -79,37 +79,6 @@ const PrimaryNav = styled.div`
       padding: 5px;
     }
   }
-
-  form {
-    display: flex;
-    flex: 2;
-    align-items: center;
-    justify-content: flex-end;
-    margin-bottom: 0;
-    padding: 5px;
-
-    input[type="search"] {
-      background-color: transparent;
-      color: #fff;
-      border: none;
-      border-bottom: 1px solid #fff;
-      padding: 2px 5px;
-      font-family: NexaRust;
-      font-size: 0.75rem;
-      &:focus {
-        border-bottom: none;
-        outline: 3px dashed var(--s-yellow);
-      }
-    }
-    button {
-      color: #fff;
-      background-color: transparent;
-      border: none;
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-    }
-  }
 `
 const NavDesktop = () => {
   const { isDrawerOpen, setIsDrawerOpen, setIsActive } = useContext(SiteContext)
@@ -169,12 +138,7 @@ const NavDesktop = () => {
             <Accessibility />
           </Link>
         </nav>
-        <form>
-          <input type="search" placeholder="Search" />
-          <button>
-            <Search />
-          </button>
-        </form>
+        <SearchForm />
       </PrimaryNav>
     </Container>
   )

@@ -150,7 +150,9 @@ const CompareGrid = () => {
         </GridItem>
         <GridItem className="overflow-x" flex="8">
           <TableWrapper>
-            <Table>{table_rows.map(row => row)}</Table>
+            <Table>
+              <tbody>{table_rows.map(row => row)}</tbody>
+            </Table>
             {items.map((item, index) => (
               <Item
                 key={`item-${index}`}

@@ -105,7 +105,7 @@ const SideScroll = ({ data }) => {
   const [lastVisible, setLastVisible] = useState(3)
   const [accessibleRange, setAccessibleRange] = useState([0, 3])
   const [showDialog, setShowDialog] = useState(false)
-  const [dialogImage, setDialogImage] = useState({})
+  const [dialogImage, setDialogImage] = useState(null)
   const updateLastVisibleClass = () => {
     const slides = document.getElementsByClassName("swiper-slide-visible")
     const firstIndex = parseInt(slides[0].dataset.swiperSlideIndex)
@@ -159,7 +159,9 @@ const SideScroll = ({ data }) => {
         ))}
       </Swiper>
       <Dialog isOpen={showDialog} aria-label="picture">
-        <Img fluid={dialogImage.fluid} alt={dialogImage.alt} />
+        {dialogImage !== null && (
+          <Img fluid={dialogImage.fluid} alt={dialogImage.alt} />
+        )}
         <CloseDialog onClick={handleClose}>Close</CloseDialog>
       </Dialog>
     </Wrapper>

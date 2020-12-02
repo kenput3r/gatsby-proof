@@ -67,10 +67,10 @@ const UseGrid = () => {
           you now look amazing.
         </p>
         <div className="row" style={{ paddingRight: 10 }}>
-          <div class="col">
+          <div className="col">
             <img src={suavecitoSkeleton} alt="The Suavecito Skeleton" />
           </div>
-          <div class="col" style={{ paddingTop: 20 }}>
+          <div className="col" style={{ paddingTop: 20 }}>
             <p className="talk-bubble">
               <span>STYLING TIP:</span>
               <br />

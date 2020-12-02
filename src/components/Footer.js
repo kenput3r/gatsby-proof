@@ -7,7 +7,8 @@ import twitter from "../images/icon-twitter_small.png"
 import youtube from "../images/icon-youtube_small.png"
 
 const StyledFooter = styled.footer`
-  padding: 0 10px 20px 10px;
+  border-top: 1px solid #9e9e9e;
+  padding: 10px 10px 20px 10px;
   input[type="button"],
   a {
     font-family: NexaRust;
