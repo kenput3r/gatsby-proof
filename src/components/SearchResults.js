@@ -109,6 +109,10 @@ const SearchResults = () => {
     page: 0,
   }
 
+  if (!searchData) {
+    setSearchData(defaultData)
+  }
+
   //handle pagination
   const handlePage = page => {
     searchFunction(page)
