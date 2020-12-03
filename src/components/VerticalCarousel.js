@@ -4,8 +4,10 @@ import PropTypes from "prop-types"
 import cn from "classnames"
 import { BsChevronUp as Prev, BsChevronDown as Next } from "react-icons/bs"
 import styled from "styled-components"
-import { Dialog, DialogOverlay, DialogContent } from "@reach/dialog"
+import { Dialog } from "@reach/dialog"
 import "@reach/dialog/styles.css"
+
+const Container = styled.div``
 
 const Carousel = styled.div`
   max-width: 640px;
@@ -177,7 +179,6 @@ const VerticalCarousel = ({ data }) => {
   const halfwayIndex = Math.ceil(data.length / 2)
   const itemHeight = 200
   const shuffleThreshold = halfwayIndex * itemHeight
-  const visibleStyleThreshold = shuffleThreshold / 2
 
   const handleClick = direction => {
     setActiveIndex(prevIndex => {
@@ -227,7 +228,7 @@ const VerticalCarousel = ({ data }) => {
   const closeDialog = () => setShowDialog(false)
 
   return (
-    <div>
+    <Container>
       <ButtonBox>
         <div className="button-container">
           <button
@@ -293,7 +294,7 @@ const VerticalCarousel = ({ data }) => {
         />
         <CloseDialog onClick={closeDialog}>Close</CloseDialog>
       </Dialog>
-    </div>
+    </Container>
   )
 }
 

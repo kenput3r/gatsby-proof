@@ -7,6 +7,13 @@ const Container = styled.div`
   box-sizing: border-box;
   width: 100%;
   height: 100%;
+
+  .small-100 {
+    @media (max-width: 767px) {
+      flex: none;
+      width: 100%;
+    }
+  }
 `
 const Grid = styled.div`
   display: flex;
@@ -17,6 +24,10 @@ const Grid = styled.div`
 
   &.main {
     height: 100%;
+    flex-wrap: wrap;
+    @media (max-width: 767px) {
+      height: auto;
+    }
   }
 `
 const GridItem = styled.div`
@@ -28,6 +39,11 @@ const GridItem = styled.div`
   &.featured {
     border-right: 1px solid #fff;
     padding-right: 2rem;
+
+    @media (max-width: 767px) {
+      border-right: 0;
+      padding-right: 0;
+    }
 
     .gatsby-image-wrapper {
       border: 4px solid #fff;
@@ -86,7 +102,7 @@ const NewReleases = () => {
   return (
     <Container>
       <Grid className="main">
-        <GridItem flex={3} className="featured">
+        <GridItem flex={3} className="featured small-100">
           <Grid>
             <Img
               fluid={data.image1.childImageSharp.fluid}
@@ -108,7 +124,7 @@ const NewReleases = () => {
             </GridItem>
           </Grid>
         </GridItem>
-        <GridItem flex={2} className="links">
+        <GridItem flex={2} className="links small-100">
           <div className="nav-title">
             <Link to="/">&rarr; Shop All New Releases</Link>
           </div>

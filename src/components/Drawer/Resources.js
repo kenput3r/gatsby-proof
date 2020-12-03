@@ -33,7 +33,7 @@ const Resources = () => {
     <Container>
       <Grid>
         <GridItem flex={1}>
-          <div class="list-title">Contact</div>
+          <div className="list-title">Contact</div>
           <nav aria-label="Contact options">
             <ul>
               <li>
@@ -52,7 +52,7 @@ const Resources = () => {
           </nav>
         </GridItem>
         <GridItem flex={1}>
-          <div class="list-title">Product Education</div>
+          <div className="list-title">Product Education</div>
           <nav aria-label="Product Education">
             <ul>
               <li>
@@ -68,7 +68,7 @@ const Resources = () => {
           </nav>
         </GridItem>
         <GridItem flex={1}>
-          <div class="list-title">About</div>
+          <div className="list-title">About</div>
           <nav aria-label="About our brands">
             <ul>
               <li>
@@ -92,7 +92,7 @@ const Resources = () => {
       </Grid>
       <Grid>
         <GridItem flex={1}>
-          <div class="list-title">Information</div>
+          <div className="list-title">Information</div>
           <nav aria-label="General Information">
             <ul>
               <li>
@@ -111,7 +111,7 @@ const Resources = () => {
           </nav>
         </GridItem>
         <GridItem flex={2}>
-          <div class="list-title">Look Books</div>
+          <div className="list-title">Look Books</div>
           <nav aria-label="Shop by brand">
             <ul>
               <li>

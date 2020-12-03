@@ -161,12 +161,14 @@ const GalleryGrid = () => {
     }
   `)
   const images = []
-  Object.keys(data).map((key, i) => {
+  const keys = Object.keys(data)
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i]
     images.push({
       fluid: data[key].childImageSharp.fluid,
       alt: `headshot ${i}`,
     })
-  })
+  }
   return (
     <Section>
       <SideScroll data={images} />

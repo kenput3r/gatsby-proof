@@ -9,6 +9,7 @@ import youtube from "../images/icon-youtube_small.png"
 const StyledFooter = styled.footer`
   border-top: 1px solid #9e9e9e;
   padding: 10px 10px 20px 10px;
+  max-width: 100%;
   input[type="button"],
   a {
     font-family: NexaRust;
@@ -22,6 +23,9 @@ const StyledFooter = styled.footer`
     font-size: 0.75rem;
     width: 400px;
     max-width: 100%;
+    @media (max-width: 767px) {
+      margin-bottom: 1.45rem;
+    }
   }
 
   .social-icons {
@@ -57,6 +61,12 @@ const StyledFooter = styled.footer`
 
   .copyright {
     text-align: right;
+  }
+
+  .small-100 {
+    @media (max-width: 767px) {
+      max-width: 100%;
+    }
   }
 `
 const Grid = styled.div`
@@ -157,33 +167,33 @@ const Footer = () => {
             </GridItem>
           </Grid>
         </GridItem>
-        <GridItem flex={1}>
+        <GridItem className="small-100" flex={1}>
           <div className="social-icons">
             <a
               href="https://instagram.com/suavecitopomade"
               target="_blank"
-              rel="norefferer"
+              rel="noreferrer"
             >
               <img src={instagram} alt="instagram icon" />
             </a>
             <a
               href="https://facebook.com/suavecitopomade"
               target="_blank"
-              rel="norefferer"
+              rel="noreferrer"
             >
               <img src={facebook} alt="facebook icon" />
             </a>
             <a
               href="https://twitter.com/suavecitopomade"
               target="_blank"
-              rel="norefferer"
+              rel="noreferrer"
             >
               <img src={twitter} alt="twitter icon" />
             </a>
             <a
               href="https://youtube.com/suavecitopomade"
               target="_blank"
-              rel="norefferer"
+              rel="noreferrer"
             >
               <img src={youtube} alt="youtube icon" />
             </a>

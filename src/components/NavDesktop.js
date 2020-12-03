@@ -15,6 +15,9 @@ import SearchForm from "./SearchForm"
 const Container = styled.div`
   position: relative;
   z-index: 11;
+  @media (max-width: 991px) {
+    display: none;
+  }
 `
 const BrandNav = styled.div`
   background-color: #fff;
@@ -22,6 +25,7 @@ const BrandNav = styled.div`
   flex-direction: row;
   font-size: 0.75rem;
   width: 100%;
+
   .message {
     flex: 2;
   }
@@ -125,7 +129,7 @@ const NavDesktop = () => {
           <Link to="/">
             <Home />
           </Link>
-          <Link to="/">
+          <Link to="/cart">
             <Cart />
           </Link>
           <Link to="/">

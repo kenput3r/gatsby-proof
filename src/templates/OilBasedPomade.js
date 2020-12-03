@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { graphql } from "gatsby"
 import styled from "styled-components"
 import Layout from "../components/layout"
+import { SiteContext } from "../components/context"
 import SEO from "../components/seo"
 import HTML from "../components/HTML"
 import StarRating from "../components/starRating"
@@ -143,14 +144,15 @@ const defaultReviewsObject = {
 
 const OilBasedPomade = ({ data }) => {
   const { shopifyProduct: product } = data
+  const { addProductToCart } = useContext(SiteContext)
   const initialData = setInitialState(product)
   const [currentData, setCurrentData] = useState(initialData)
   const [isActive, setIsActive] = useState("details")
-  const [selectedVariant, setSelectedVariant] = useState(
-    product.variants[0].sku
-  )
+  const [selectedQuantity, setSelectedQuantity] = useState(1)
   const [quantityAvailable, setQuantityAvailable] = useState([1])
   const [reviewsObject, setReviewsObject] = useState(defaultReviewsObject)
+  const selectedVariant = product.variants[0].sku
+  const selectedId = product.variants[0].shopifyId
   useEffect(() => {
     async function fetchData() {
       const fetchedData = await fetchCurrentProductData(product.handle)
@@ -215,14 +217,20 @@ const OilBasedPomade = ({ data }) => {
               {product.priceRange.minVariantPrice.currencyCode}
             </div>
             <div>
-              <QuantitySelect>
+              <QuantitySelect
+                onChange={e => setSelectedQuantity(parseInt(e.target.value))}
+              >
                 {quantityAvailable.map(value => (
                   <option value={value} key={`qtysel` + value}>
                     {value}
                   </option>
                 ))}
               </QuantitySelect>
-              <Button>ADD TO CART</Button>
+              <Button
+                onClick={() => addProductToCart(selectedId, selectedQuantity)}
+              >
+                ADD TO CART
+              </Button>
             </div>
           </div>
         </ProductInfoGrid>
@@ -339,6 +347,7 @@ export const query = graphql`
           }
         }
         sku
+        shopifyId
       }
     }
     image1: file(relativePath: { eq: "oil-based-1.jpg" }) {

@@ -3,6 +3,10 @@
   --s-red-light: #b2370b;
   --s-yellow: #fab203;
   --s-black: #212121;
+  --medium-max: 991px;
+  --medium-min: 768px;
+  --small-max: 767px;
+  --large-min: 992px;
 }
 html {
   -ms-text-size-adjust: 100%;
@@ -614,4 +618,10 @@ pre tt:after {
 }
 [data-reach-dialog-overlay] {
   z-index: 2;
+}
+@media (max-width: 991px) {
+  div[data-reach-dialog-content] {
+    width: 90vw;
+    padding: 1rem;
+  }
 }

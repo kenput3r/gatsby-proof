@@ -133,19 +133,18 @@ const SearchResults = () => {
   // handle click outside
   const wrapperRef = useRef(null)
   useEffect(() => {
+    const handleClickOutside = event => {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        setSearchData(defaultData)
+        document.getElementById("AlgoliaSearchForm").reset()
+        setSearchVisibility(false)
+      }
+    }
     document.addEventListener("click", handleClickOutside, false)
     return () => {
       document.removeEventListener("click", handleClickOutside, false)
     }
-  }, [])
-
-  const handleClickOutside = event => {
-    if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-      setSearchData(defaultData)
-      document.getElementById("AlgoliaSearchForm").reset()
-      setSearchVisibility(false)
-    }
-  }
+  })
 
   return (
     <div ref={wrapperRef}>
@@ -177,24 +176,23 @@ const SearchResults = () => {
               <Pagination>
                 <hr />
                 {!isFirst && (
-                  <a href="#" onClick={() => handlePage(prevPage)} rel="prev">
+                  <button onClick={() => handlePage(prevPage)} rel="prev">
                     ← Previous Page
-                  </a>
+                  </button>
                 )}
                 {Array.from({ length: numPages }, (_, i) => (
-                  <a
+                  <button
                     key={`pagination-number${i + 1}`}
-                    href="#"
                     onClick={() => handlePage(i + 1)}
                     className={i + 1 === currentPage ? "active" : ""}
                   >
                     {i + 1}
-                  </a>
+                  </button>
                 ))}
                 {!isLast && (
-                  <a href="#" onClick={() => handlePage(nextPage)} rel="next">
+                  <button onClick={() => handlePage(nextPage)} rel="next">
                     Next Page →
-                  </a>
+                  </button>
                 )}
               </Pagination>
             )}

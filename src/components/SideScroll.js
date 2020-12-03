@@ -3,7 +3,7 @@ import styled from "styled-components"
 import Img from "gatsby-image"
 import SwiperCore, { Navigation } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Dialog, DialogOverlay, DialogContent } from "@reach/dialog"
+import { Dialog } from "@reach/dialog"
 import "swiper/swiper-bundle.min.css"
 
 const Wrapper = styled.div`
@@ -119,7 +119,8 @@ const SideScroll = ({ data }) => {
     setLastVisible(lastIndex)
     setAccessibleRange([firstIndex, lastIndex])
   }
-  const handleOpen = image => {
+  const handleOpen = (e, image) => {
+    e.preventDefault()
     setDialogImage(image)
     setShowDialog(true)
   }
@@ -146,12 +147,13 @@ const SideScroll = ({ data }) => {
             className={lastVisible === i ? "swiper-slide-last-visible" : ""}
           >
             <a
+              href="/"
               className="open-full"
               role="button"
               tabIndex={
                 i >= accessibleRange[0] && i <= accessibleRange[1] ? "0" : ""
               }
-              onClick={() => handleOpen(image)}
+              onClick={e => handleOpen(e, image)}
             >
               <Img fluid={image.fluid} alt={image.alt} />
             </a>

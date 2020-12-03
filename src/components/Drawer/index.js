@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 import { SiteContext } from "../context"
 import NewReleases from "./NewReleases"
@@ -30,15 +30,37 @@ const Container = styled.div`
   @media (max-width: 399px) {
     width: 100%;
   }
+  @media (max-width: 991px) {
+    overflow-y: scroll;
+  }
   .close-nav {
     text-align: right;
     margin-top: -27px;
     margin-left: auto;
 
+    @media (max-width: 991px) {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      button.close-drawer {
+        position: absolute;
+        margin-top: -80px;
+        margin-left: -20px;
+        padding: 10px;
+
+        svg {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+
     button {
       background-color: transparent;
       border: 0;
       color: #fff;
+      &.active {
+        border-bottom: 2px solid #fff;
+      }
     }
   }
   a {
@@ -53,14 +75,43 @@ const Container = styled.div`
       text-align: center;
     }
   }
+  .mobile-tabs {
+    @media (min-width: 992px) {
+      display: none;
+    }
+  }
 `
 
 const Drawer = () => {
-  const { isDrawerOpen, isActive, closeDrawer } = useContext(SiteContext)
+  const { isDrawerOpen, isActive, setIsActive, closeDrawer } = useContext(
+    SiteContext
+  )
   return (
     <Container isDrawerOpen={isDrawerOpen}>
       <div className="close-nav">
-        <button onClick={closeDrawer}>
+        <div className="mobile-tabs">
+          <button
+            onClick={() => setIsActive("shop")}
+            className={isActive === "shop" ? "active" : ""}
+          >
+            SHOP
+          </button>{" "}
+          |{" "}
+          <button
+            onClick={() => setIsActive("newReleases")}
+            className={isActive === "newReleases" ? "active" : ""}
+          >
+            NEW
+          </button>{" "}
+          |
+          <button
+            onClick={() => setIsActive("resources")}
+            className={isActive === "resources" ? "active" : ""}
+          >
+            RESOURCES
+          </button>
+        </div>
+        <button className="close-drawer" onClick={closeDrawer}>
           <Close />
         </button>
       </div>

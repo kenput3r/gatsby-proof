@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { BsChevronDown } from "react-icons/bs"
 import StarRating from "../starRating"
+import { Dialog } from "@reach/dialog"
+import "@reach/dialog/styles.css"
 
 const Section = styled.section`
   .wrapper {
@@ -39,6 +41,17 @@ const Section = styled.section`
     }
   }
   .more-reviews {
+    ::after {
+      content: "";
+      display: table;
+      bottom: 0;
+      background: linear-gradient(0deg, #fff 0%, hsla(0, 0%, 100%, 0) 100%);
+      height: 90px;
+      width: 100%;
+      margin-top: -80px;
+      z-index: 2;
+      position: relative;
+    }
     h6 {
       color: var(--s-red);
       text-align: center;
@@ -47,6 +60,15 @@ const Section = styled.section`
   .reviews {
     height: 200px;
     overflow-y: scroll;
+    ::-webkit-scrollbar {
+      -webkit-appearance: none;
+      width: 7px;
+    }
+    ::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background-color: rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+    }
   }
   .review {
     margin-bottom: 1.45rem;
@@ -71,11 +93,18 @@ const Section = styled.section`
       width: 80%;
     }
   }
+  .small-100 {
+    @media (max-width: 767px) {
+      width: 100%;
+      flex: none;
+    }
+  }
 `
 
 const Row = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 `
 
 const Col = styled.div`
@@ -97,6 +126,38 @@ const Button = styled.button`
   font-family: NexaRust;
   text-transform: uppercase;
   padding: 10px;
+`
+const CloseDialog = styled.button`
+  margin-top: 5px;
+  margin-left: 3px;
+  border: 0;
+  background-color: var(--s-red);
+  color: #fff;
+  font-family: NexaRust;
+`
+const Form = styled.form`
+  width: 480px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  label {
+    display: block;
+  }
+  input,
+  textarea {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  input[type="button"] {
+    background-color: var(--s-red);
+    color: #ffffff;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 6px 6px 5px rgba(0, 0, 0, 0.3);
+    font-family: NexaRust;
+    text-transform: uppercase;
+    padding: 10px;
+  }
 `
 
 const getLegacyId = async id => {
@@ -127,7 +188,14 @@ const getReviews = async url => {
 
 const ReviewsGrid = ({ product_id, reviewsState, setReviewsState }) => {
   const [legacyId, setLegacyId] = useState(null)
-  const [page, setPage] = useState(1)
+  const [showDialog, setShowDialog] = useState(false)
+  const [reviewScore, setReviewScore] = useState("")
+  const [reviewHeadline, setReviewHeadline] = useState("")
+  const [reviewBody, setReviewBody] = useState("")
+  const [reviewName, setReviewName] = useState("")
+  const [reviewEmail, setReviewEmail] = useState("")
+  const [isReviewReceived, setIsReviewReceived] = useState(false)
+  const page = 1
   const app_key = "q7EYKyLuCq4wDQ7s0M36GkawfE2I4JDL9gg4wvGY"
   const url = `https://api.yotpo.com/v1/widget/${app_key}/products/${legacyId}/reviews.json?page=${page}&per_page=24`
   useEffect(() => {
@@ -139,12 +207,32 @@ const ReviewsGrid = ({ product_id, reviewsState, setReviewsState }) => {
         setReviewsState(reviews)
       }
     })()
-  }, [legacyId])
-  const { bottomline, pagenation, reviews } = reviewsState
+  }, [
+    legacyId,
+    product_id,
+    reviewsState.bottomline.total_review,
+    setReviewsState,
+    url,
+  ])
+  const openDialog = () => setShowDialog(true)
+  const closeDialog = () => setShowDialog(false)
+  const submitReview = async () => {
+    const response = await new Promise((res, rej) => {
+      setTimeout(() =>
+        res(
+          { reviewScore, reviewHeadline, reviewBody, reviewName, reviewEmail },
+          200
+        )
+      )
+    })
+    console.log(response)
+    setIsReviewReceived(true)
+  }
+  const { bottomline, reviews } = reviewsState
   return (
     <Section>
       <Row>
-        <Col>
+        <Col className="small-100">
           <div className="wrapper">
             <h3>
               <span>{bottomline.average_score.toPrecision(2)}</span>{" "}
@@ -227,19 +315,19 @@ const ReviewsGrid = ({ product_id, reviewsState, setReviewsState }) => {
           <Row className="wrapper">
             <Col></Col>
             <Col flex={3}>
-              <Button>WRITE A REVIEW</Button>
+              <Button onClick={openDialog}>WRITE A REVIEW</Button>
             </Col>
           </Row>
         </Col>
-        <Col>
+        <Col className="small-100">
           <div className="featured-review">
-            <h4>0 STARS</h4>
+            <h4>5 STARS</h4>
             <div>
-              <StarRating number={0} />
+              <StarRating number={5} />
             </div>
             <p>
-              "A featured review - something good we would pin to the top of
-              this page!"
+              "I waited so long for the Suavecito fragrance in an oil based
+              pomade! This stuff is litterally the best!"
             </p>
           </div>
           <div className="more-reviews">
@@ -247,7 +335,7 @@ const ReviewsGrid = ({ product_id, reviewsState, setReviewsState }) => {
               MORE REVIEWS <BsChevronDown />
             </h6>
             <div className="reviews">
-              {reviewsState.reviews.map(review => (
+              {reviews.map(review => (
                 <div className="review" key={review.id}>
                   <p>{review.content}</p>
                   <div className="footer">
@@ -258,9 +346,64 @@ const ReviewsGrid = ({ product_id, reviewsState, setReviewsState }) => {
                 </div>
               ))}
             </div>
+            <div className="fade-out"></div>
           </div>
         </Col>
       </Row>
+      <Dialog isOpen={showDialog} aria-label="picture">
+        {!isReviewReceived ? (
+          <Form>
+            <div className="form-group">
+              <label htmlFor="score">Score</label>
+              <input
+                type="text"
+                id="score"
+                value={reviewScore}
+                onChange={e => setReviewScore(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="headline">Review Headline</label>
+              <input
+                type="text"
+                id="headline"
+                value={reviewHeadline}
+                onChange={e => setReviewHeadline(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="reviewBody">Review</label>
+              <textarea
+                id="reviewBody"
+                value={reviewBody}
+                onChange={e => setReviewBody(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="name">Your Name</label>
+              <input
+                type="text"
+                id="name"
+                value={reviewName}
+                onChange={e => setReviewName(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Your Email</label>
+              <input
+                type="email"
+                id="email"
+                value={reviewEmail}
+                onChange={e => setReviewEmail(e.target.value)}
+              />
+            </div>
+            <input type="button" value="submit" onClick={submitReview} />
+          </Form>
+        ) : (
+          <p className="thank-you-message">Thank you for your review!</p>
+        )}
+        <CloseDialog onClick={closeDialog}>Close</CloseDialog>
+      </Dialog>
     </Section>
   )
 }
