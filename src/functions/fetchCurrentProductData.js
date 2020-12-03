@@ -1,10 +1,10 @@
 const endpoint = process.env.GATSBY_ENDPOINT
 const token = process.env.GATSBY_STORE_TOKEN
-const headers = new Headers({
+const headers = {
   "Content-type": "application/json",
   Accept: "application/json",
   "X-Shopify-Storefront-Access-Token": token,
-})
+}
 
 export default async function fetchAvailableQty(handle) {
   const response = await fetch(endpoint, {

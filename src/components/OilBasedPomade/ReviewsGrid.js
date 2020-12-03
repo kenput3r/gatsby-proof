@@ -162,10 +162,10 @@ const Form = styled.form`
 
 const getLegacyId = async id => {
   const url = `https://api.suavecito.com/api/shopify/retail/product/legacy-id`
-  const headers = new Headers({
+  const headers = {
     "Content-Type": "application/json",
     Accept: "application/json",
-  })
+  }
   const response = await fetch(url, {
     method: "POST",
     headers: headers,
@@ -176,10 +176,10 @@ const getLegacyId = async id => {
 }
 
 const getReviews = async url => {
-  const headers = new Headers({
+  const headers = {
     "Content-Type": "application/json",
     Accept: "application/json",
-  })
+  }
   const data = await fetch(url, { headers: headers })
   const reviews = await data.json()
   console.log(reviews)
