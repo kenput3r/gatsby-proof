@@ -132,6 +132,7 @@ const Footer = () => {
               value={email}
               type="email"
               name="email"
+              id="email"
               onChange={e => handleChange(e, setEmail)}
             />
             <label htmlFor="phone">Mobile Phone</label>
@@ -139,6 +140,7 @@ const Footer = () => {
               value={phone}
               type="tel"
               name="phone"
+              id="phone"
               onChange={e => handleChange(e, setPhone)}
             />
             <input
