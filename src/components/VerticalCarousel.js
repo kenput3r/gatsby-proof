@@ -235,6 +235,7 @@ const VerticalCarousel = ({ data }) => {
             type="button"
             className="carousel-button prev"
             onClick={() => handleClick("prev")}
+            title="Previous slide"
           >
             <Prev />
           </button>
@@ -257,6 +258,7 @@ const VerticalCarousel = ({ data }) => {
                     style={{
                       transform: `translateY(${determinePlacement(i)}px)`,
                     }}
+                    title={`Slide ${i}`}
                   >
                     <Img fixed={item.images.preview} alt={item.alt} />
                   </button>
@@ -267,7 +269,11 @@ const VerticalCarousel = ({ data }) => {
         </div>
 
         <div className="content">
-          <button className="preview-image" onClick={openDialog}>
+          <button
+            className="preview-image"
+            onClick={openDialog}
+            title="Previous slide"
+          >
             <Img
               fixed={data[activeIndex].images.preview}
               alt={data[activeIndex].alt}
@@ -281,6 +287,7 @@ const VerticalCarousel = ({ data }) => {
             type="button"
             className="carousel-button next"
             onClick={() => handleClick("next")}
+            title="View enlarged image"
           >
             <Next />
           </button>

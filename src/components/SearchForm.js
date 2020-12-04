@@ -51,11 +51,12 @@ const SearchForm = () => {
   return (
     <Form id="AlgoliaSearchForm">
       <input
+        title="Search"
         type="search"
         placeholder="Search"
         onChange={event => handleChange(event)}
       />
-      <button>
+      <button title="Submit Search">
         <Search />
       </button>
     </Form>

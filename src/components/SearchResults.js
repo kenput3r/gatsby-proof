@@ -176,7 +176,11 @@ const SearchResults = () => {
               <Pagination>
                 <hr />
                 {!isFirst && (
-                  <button onClick={() => handlePage(prevPage)} rel="prev">
+                  <button
+                    onClick={() => handlePage(prevPage)}
+                    rel="prev"
+                    title="Previous page"
+                  >
                     ← Previous Page
                   </button>
                 )}
@@ -185,12 +189,17 @@ const SearchResults = () => {
                     key={`pagination-number${i + 1}`}
                     onClick={() => handlePage(i + 1)}
                     className={i + 1 === currentPage ? "active" : ""}
+                    title={`Jump to page ${i}`}
                   >
                     {i + 1}
                   </button>
                 ))}
                 {!isLast && (
-                  <button onClick={() => handlePage(nextPage)} rel="next">
+                  <button
+                    onClick={() => handlePage(nextPage)}
+                    rel="next"
+                    title="Next page"
+                  >
                     Next Page →
                   </button>
                 )}

@@ -93,6 +93,7 @@ const Drawer = () => {
           <button
             onClick={() => setIsActive("shop")}
             className={isActive === "shop" ? "active" : ""}
+            title="Shop menu"
           >
             SHOP
           </button>{" "}
@@ -100,6 +101,7 @@ const Drawer = () => {
           <button
             onClick={() => setIsActive("newReleases")}
             className={isActive === "newReleases" ? "active" : ""}
+            title="New releases menu"
           >
             NEW
           </button>{" "}
@@ -107,11 +109,12 @@ const Drawer = () => {
           <button
             onClick={() => setIsActive("resources")}
             className={isActive === "resources" ? "active" : ""}
+            title="Resources menu"
           >
             RESOURCES
           </button>
         </div>
-        <button className="close-drawer" onClick={closeDrawer}>
+        <button className="close-drawer" onClick={closeDrawer} title="close">
           <Close />
         </button>
       </div>

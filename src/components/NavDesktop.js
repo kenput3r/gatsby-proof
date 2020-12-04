@@ -109,7 +109,7 @@ const NavDesktop = () => {
       </BrandNav>
       <PrimaryNav>
         <div className="logo">
-          <Link to="/">
+          <Link to="/" title="Suavecito Home Page">
             <img
               src={suavecitoLogo}
               alt="Suavecito"
@@ -126,20 +126,20 @@ const NavDesktop = () => {
           <a className="button" href="https://wholesale.suavecito.com">
             Wholesale
           </a>
-          <Link to="/">
+          <Link to="/" title="Suavecito Home Page">
             <Home />
           </Link>
-          <Link to="/cart">
+          <Link to="/cart" title="Shopping Cart">
             <Cart />
           </Link>
           <Link to="/">
-            <Account />
+            <Account title="Account" />
           </Link>
-          <Link to="/">
+          <Link to="/" title="Chat with customer service">
             <Chat />
           </Link>
           <Link to="/">
-            <Accessibility />
+            <Accessibility title="Accessibility features" />
           </Link>
         </nav>
         <SearchForm />

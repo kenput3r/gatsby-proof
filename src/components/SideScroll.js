@@ -154,6 +154,7 @@ const SideScroll = ({ data }) => {
                 i >= accessibleRange[0] && i <= accessibleRange[1] ? "0" : ""
               }
               onClick={e => handleOpen(e, image)}
+              title="View enlarged image"
             >
               <Img fluid={image.fluid} alt={image.alt} />
             </a>
