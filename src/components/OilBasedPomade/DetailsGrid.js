@@ -89,19 +89,34 @@ const DetailsGrid = () => {
           <div className="grid space-around">
             <div className="grid-item auto">
               <div>
-                <img src={mediumHold} alt="Flexing Skeleton Arm" />
+                <img
+                  src={mediumHold}
+                  alt="Flexing Skeleton Arm"
+                  width="103px"
+                  height="100px"
+                />
               </div>
               <div>Medium Hold</div>
             </div>
             <div className="grid-item auto">
               <div>
-                <img src={highShine} alt="Shine sparkles" />
+                <img
+                  src={highShine}
+                  alt="Shine sparkles"
+                  width="107px"
+                  height="101px"
+                />
               </div>
               <div>High Shine</div>
             </div>
             <div className="grid-item auto">
               <div>
-                <img src={oilBased} alt="Flexing Skeleton Arm" />
+                <img
+                  src={oilBased}
+                  alt="Flexing Skeleton Arm"
+                  width="69px"
+                  height="95px"
+                />
               </div>
               <div>Oil Based</div>
             </div>
@@ -112,19 +127,34 @@ const DetailsGrid = () => {
           <div className="grid space-around">
             <div className="grid-item auto">
               <div>
-                <img src={thickHair} alt="Three thick straight lines" />
+                <img
+                  src={thickHair}
+                  alt="Three thick straight lines"
+                  width="136px"
+                  height="105px"
+                />
               </div>
               <div>Thick Hair</div>
             </div>
             <div className="grid-item auto">
               <div>
-                <img src={wavyHair} alt="Three wavy lines" />
+                <img
+                  src={wavyHair}
+                  alt="Three wavy lines"
+                  width="145px"
+                  height="112px"
+                />
               </div>
               <div>Wavy Hair</div>
             </div>
             <div className="grid-item auto">
               <div>
-                <img src={curlyHair} alt="Line wrapping in a swirl" />
+                <img
+                  src={curlyHair}
+                  alt="Line wrapping in a swirl"
+                  width="145px"
+                  height="112px"
+                />
               </div>
               <div>Curly Hair</div>
             </div>
@@ -140,6 +170,8 @@ const DetailsGrid = () => {
                 <img
                   src={jellyRoll}
                   alt="Skeleton head with jelly roll style hair"
+                  width="192px"
+                  height="158px"
                 />
               </div>
               <div>Jelly Roll</div>
@@ -149,6 +181,8 @@ const DetailsGrid = () => {
                 <img
                   src={pompadour}
                   alt="Skeleton head with pompadour style hair"
+                  width="188px"
+                  height="146px"
                 />
               </div>
               <div>Pompadour</div>

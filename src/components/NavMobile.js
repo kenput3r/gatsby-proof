@@ -55,12 +55,17 @@ const NavMobile = () => {
     <Container>
       <PrimaryNav>
         <div className="logo">
-          <Link to="/">
-            <img src={suavecitoLogo} alt="Suavecito" />
+          <Link to="/" title="Suavecito Home Page">
+            <img
+              src={suavecitoLogo}
+              alt="Suavecito"
+              width="115px"
+              height="54px"
+            />
           </Link>
         </div>
         <div className="burger-container">
-          <button onClick={() => triggerDrawer("shop")}>
+          <button onClick={() => triggerDrawer("shop")} title="Open Navigation">
             <Burger />
           </button>
         </div>

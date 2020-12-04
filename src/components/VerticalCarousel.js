@@ -154,6 +154,13 @@ const ButtonBox = styled.div`
         margin-top: 3px;
       }
 
+      &.prev,
+      &.next {
+        height: 48px;
+        width: 48px;
+        align-items: center;
+      }
+
       svg {
         height: 26px;
         width: 26px;

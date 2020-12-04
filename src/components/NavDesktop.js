@@ -114,6 +114,8 @@ const NavDesktop = () => {
               src={suavecitoLogo}
               alt="Suavecito"
               style={{ marginBottom: 0 }}
+              width="112.5px"
+              height="54px"
             />
           </Link>
         </div>

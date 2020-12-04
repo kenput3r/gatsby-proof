@@ -97,6 +97,11 @@ const Form = styled.form`
   input[type="email"] {
     width: 100%;
   }
+  input#phone {
+    @media (max-width: 320px) {
+      max-width: 165px;
+    }
+  }
   input[type="button"] {
     background-color: var(--s-red);
     color: #ffffff;
@@ -125,7 +130,7 @@ const Footer = () => {
   return (
     <StyledFooter>
       <Grid>
-        <GridItem flex={1}>
+        <GridItem flex={1} className="small-100">
           <Form>
             <label htmlFor="email">Email Address</label>
             <input
@@ -176,28 +181,48 @@ const Footer = () => {
               target="_blank"
               rel="noreferrer"
             >
-              <img src={instagram} alt="instagram icon" />
+              <img
+                src={instagram}
+                alt="instagram icon"
+                height="32px"
+                width="32px"
+              />
             </a>
             <a
               href="https://facebook.com/suavecitopomade"
               target="_blank"
               rel="noreferrer"
             >
-              <img src={facebook} alt="facebook icon" />
+              <img
+                src={facebook}
+                alt="facebook icon"
+                height="32px"
+                width="32px"
+              />
             </a>
             <a
               href="https://twitter.com/suavecitopomade"
               target="_blank"
               rel="noreferrer"
             >
-              <img src={twitter} alt="twitter icon" />
+              <img
+                src={twitter}
+                alt="twitter icon"
+                height="32px"
+                width="32px"
+              />
             </a>
             <a
               href="https://youtube.com/suavecitopomade"
               target="_blank"
               rel="noreferrer"
             >
-              <img src={youtube} alt="youtube icon" />
+              <img
+                src={youtube}
+                alt="youtube icon"
+                height="32px"
+                width="32px"
+              />
             </a>
           </div>
           <div className="tagline">
