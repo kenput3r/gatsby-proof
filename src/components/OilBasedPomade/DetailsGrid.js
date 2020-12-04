@@ -192,6 +192,8 @@ const DetailsGrid = () => {
                 <img
                   src={slickback}
                   alt="Skeleton head with slickback style hair"
+                  width="135px"
+                  height="115px"
                 />
               </div>
               <div>Slickback</div>
