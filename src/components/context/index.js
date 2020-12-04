@@ -6,18 +6,23 @@ const client = Client.buildClient({
   storefrontAccessToken: process.env.GATSBY_STORE_TOKEN,
 })
 
+const defaultData = {
+  hits: [],
+  hitsPerPage: 0,
+  nbHits: 0,
+  nbPages: 0,
+  page: 0,
+}
+
 const isBrowser = typeof window !== "undefined"
 
-export const SiteContext = createContext({})
+const defaultContext = {
+  searchData: defaultData,
+}
+
+export const SiteContext = createContext(defaultContext)
 
 export const SiteProvider = ({ children }) => {
-  const defaultData = {
-    hits: [],
-    hitsPerPage: 0,
-    nbHits: 0,
-    nbPages: 0,
-    page: 0,
-  }
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const [isActive, setIsActive] = useState("shop")
   const [searchData, setSearchData] = useState(defaultData)
