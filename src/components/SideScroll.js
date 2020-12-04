@@ -126,7 +126,7 @@ const SideScroll = ({ data }) => {
   }
   const handleClose = () => setShowDialog(false)
   const breakpoints = {
-    428: {
+    500: {
       slidesPerView: 4,
     },
   }
