@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 import { GiHamburgerMenu as Burger } from "react-icons/gi"
-import { SiteContext } from "./context"
+import { SiteContext } from "./context/index.js"
 import suavecitoLogo from "../images/suavecito-script.png"
 
 const Container = styled.div`

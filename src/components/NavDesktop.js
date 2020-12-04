@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
-import { SiteContext } from "./context"
+import { SiteContext } from "./context/index.js"
 import suavecitoLogo from "../images/suavecito-script.png"
 import {
   MdHome as Home,

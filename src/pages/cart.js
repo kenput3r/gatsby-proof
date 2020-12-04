@@ -4,7 +4,7 @@
  */
 import React, { useContext, useState } from "react"
 import Layout from "../components/layout"
-import { SiteContext } from "../components/context"
+import { SiteContext } from "../components/context/index.js"
 
 const Cart = () => {
   const {
