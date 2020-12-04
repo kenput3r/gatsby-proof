@@ -56,10 +56,14 @@ const Carousel = styled.div`
       width: 100%;
       height: 100%;
       padding: 0;
+      position: relative;
     }
 
     .gatsby-image-wrapper {
+      top: 0;
+      left: 0;
       &[style] {
+        position: absolute !important;
         width: 100% !important;
         height: 100% !important;
       }
