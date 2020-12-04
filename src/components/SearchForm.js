@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import styled from "styled-components"
-import { SiteContext } from "./context"
+import { SiteContext } from "./context/index.js"
 import { MdSearch as Search } from "react-icons/md"
 
 const Form = styled.form`

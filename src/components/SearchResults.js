@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useContext } from "react"
 import styled from "styled-components"
-import { SiteContext } from "./context"
+import { SiteContext } from "./context/index.js"
 
 // styled components
 const Wrapper = styled.div`
