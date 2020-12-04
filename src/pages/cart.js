@@ -17,7 +17,7 @@ const Cart = () => {
   return (
     <Layout>
       <h1>Cart</h1>
-      {checkout.lineItems && checkout.lineItems.length ? (
+      {checkout && checkout.lineItems && checkout.lineItems.length ? (
         <div>
           {checkout.lineItems.map(lineItem => (
             <p key={lineItem.id}>
