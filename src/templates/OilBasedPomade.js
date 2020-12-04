@@ -219,6 +219,7 @@ const OilBasedPomade = ({ data }) => {
             <div>
               <QuantitySelect
                 onChange={e => setSelectedQuantity(parseInt(e.target.value))}
+                title="Quantity"
               >
                 {quantityAvailable.map(value => (
                   <option value={value} key={`qtysel` + value}>
